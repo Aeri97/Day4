@@ -1,0 +1,44 @@
+package com.telusko.ProjectSpringweb;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ProductService {
+
+    @Autowired
+    ProductDB db;
+
+       public void addProduct(Product p)
+       {
+      //      products.add(p);
+
+        db.save(p);
+//
+   }
+//
+    public List<Product> getAllProducts(){
+
+        return db.findAll();
+    }
+//
+    public Product getProduct(String name){
+//        for(Product p : products){
+//            if(p.getName().equals(name))
+//                return p;
+//        }
+
+        return db.findByName( name);
+    }
+    public  List<Product> getProductPlace(String place) {
+
+        return  db.findByPlace( place);
+    }
+
+
+    public List<Product> getProductsByWarranty(int maxWarranty) {
+        return db.findByWarrantyLessThan(maxWarranty);
+    }
+}
